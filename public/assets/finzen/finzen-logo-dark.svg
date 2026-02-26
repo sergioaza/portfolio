@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 110" width="340" height="110">
+  <!--
+    FinZen Logo — variante FONDO OSCURO
+    Colores: "Fin" slate-50 · "Zen" indigo-400
+    Uso: sidebars, headers oscuros, dark mode, fondos navy o negros
+  -->
+  <defs>
+    <linearGradient id="g" gradientUnits="userSpaceOnUse" x1="10" y1="10" x2="100" y2="100">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Ícono -->
+  <path d="M 67.2 9.6 A 47 47 0 1 1 42.8 9.6"
+        fill="none" stroke="url(#g)" stroke-width="5.5" stroke-linecap="round"/>
+  <path d="M 22 73 L 37 58 L 51 67 L 66 50 L 83 40"
+        fill="none" stroke="url(#g)" stroke-width="3.5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="83" cy="40" r="5" fill="#06B6D4"/>
+
+  <!-- Wordmark -->
+  <text x="125" y="60" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="44">
+    <tspan font-weight="300" fill="#F8FAFC">Fin</tspan><tspan font-weight="700" fill="#818CF8">Zen</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="126" y="81"
+        font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+        font-size="10.5" font-weight="400" fill="#475569" letter-spacing="2.5">FINANZAS PERSONALES</text>
+</svg>
