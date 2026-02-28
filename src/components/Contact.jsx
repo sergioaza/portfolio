@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Github, Send, Copy, Check } from 'lucide-react';
+import { Mail, Github, Send, Copy, Check, HelpCircle } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const EMAIL = 'sergioaza2525@gmail.com';
@@ -20,18 +20,30 @@ export default function Contact() {
   };
 
   return (
-    <section
-      id="contacto"
-      className="py-24 px-6 bg-[#0f0f1a]"
-    >
+    <section id="contacto" className="py-24 px-6 bg-[#0f0f1a]">
       <div className="max-w-4xl mx-auto text-center" ref={ref}>
-        <h2 className="section-title gradient-text animate-on-scroll">Conectemos</h2>
 
-        <p className="text-[#94a3b8] text-lg max-w-xl mx-auto mb-12 animate-on-scroll" style={{ transitionDelay: '0.1s' }}>
-          ¿Tienes un proyecto en mente? ¿Quieres colaborar o simplemente charlar sobre tecnología?
-          <span className="text-[#e2e8f0] font-medium"> Escríbeme.</span>
+        {/* Icon + hook */}
+        <div className="animate-on-scroll" style={{ transitionDelay: '0s' }}>
+          <div className="w-14 h-14 rounded-2xl bg-[#667eea]/10 border border-[#667eea]/20 flex items-center justify-center mx-auto mb-5">
+            <HelpCircle size={24} className="text-[#667eea]" />
+          </div>
+        </div>
+
+        <h2 className="section-title gradient-text animate-on-scroll" style={{ transitionDelay: '0.05s' }}>
+          Conectemos
+        </h2>
+
+        <p className="text-[#e2e8f0] text-xl font-medium max-w-lg mx-auto mb-3 animate-on-scroll" style={{ transitionDelay: '0.1s' }}>
+          Los mejores proyectos empezaron con un mensaje que alguien casi no envió.
         </p>
 
+        <p className="text-[#94a3b8] text-base max-w-md mx-auto mb-12 animate-on-scroll" style={{ transitionDelay: '0.15s' }}>
+          ¿Tienes un reto en mente, quieres colaborar o simplemente charlar sobre tecnología?
+          Este podría ser ese mensaje.
+        </p>
+
+        {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto mb-12">
           {/* Email card */}
           <div
@@ -81,14 +93,12 @@ export default function Contact() {
 
         {/* CTA */}
         <div className="animate-on-scroll" style={{ transitionDelay: '0.4s' }}>
-          <a
-            href={`mailto:${EMAIL}`}
-            className="btn-primary inline-flex"
-          >
+          <a href={`mailto:${EMAIL}`} className="btn-primary inline-flex">
             <Mail size={18} />
             Enviar mensaje
           </a>
         </div>
+
       </div>
     </section>
   );

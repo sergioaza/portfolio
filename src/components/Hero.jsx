@@ -46,23 +46,18 @@ export default function Hero() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
         {/* Text content */}
         <div className="flex-1 text-center lg:text-left">
-          <div className="hero-anim inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#667eea]/10 border border-[#667eea]/20 text-[#667eea] text-sm font-medium mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#667eea] animate-pulse" />
-            Disponible para proyectos
-          </div>
-
           <h1 ref={titleRef} className="hero-anim text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-[#e2e8f0]">
             Sergio Daniel<br />
             <span className="gradient-text">Aza Ocampo</span>
           </h1>
 
           <p className="hero-anim text-xl font-medium text-[#94a3b8] mb-2">
-            Desarrollador Full Stack
+            Desarrollador · Fundador · Especialista en IA
           </p>
 
           <div className="hero-anim flex items-center justify-center lg:justify-start gap-2 text-[#94a3b8] text-sm mb-8">
             <MapPin size={14} className="text-[#667eea]" />
-            <span>Ing. Sistemas · 7mo Semestre · Universidad Jorge Tadeo Lozano · Bogotá</span>
+            <span>20 años · COL / BOGOTÁ · 4.7110° N, 74.0721° O</span>
           </div>
 
           <p className="hero-anim text-[#94a3b8] leading-relaxed max-w-xl mb-10 text-base lg:mx-0 mx-auto">
@@ -105,20 +100,20 @@ export default function Hero() {
 
             {/* Floating badges */}
             <div className="absolute -right-4 top-8 glass-card px-3 py-2 flex items-center gap-2 text-xs font-medium text-[#e2e8f0] animate-float" style={{ animationDelay: '0s' }}>
-              <span className="w-2 h-2 rounded-full bg-green-400" />
-              React + FastAPI
+              <span className="w-2 h-2 rounded-full bg-[#667eea]" />
+              Engineering Prompting
             </div>
             <div className="absolute -left-8 bottom-12 glass-card px-3 py-2 flex items-center gap-2 text-xs font-medium text-[#e2e8f0] animate-float" style={{ animationDelay: '1.5s' }}>
-              <span className="text-[#667eea]">⚡</span>
-              Claude Code AI
+              <span className="w-2 h-2 rounded-full bg-[#a855f7]" />
+              Especialista en IA
             </div>
             <div className="absolute -right-2 bottom-4 glass-card px-3 py-2 flex items-center gap-2 text-xs font-medium text-[#e2e8f0] animate-float" style={{ animationDelay: '3s' }}>
-              <span>📱</span>
-              Android + Kotlin
+              <span className="w-2 h-2 rounded-full bg-[#06b6d4]" />
+              Creador de Apps Móviles
             </div>
             <div className="absolute -top-4 left-0 glass-card px-3 py-2 flex items-center gap-2 text-xs font-medium text-[#e2e8f0] animate-float" style={{ animationDelay: '0.75s' }}>
-              <span>🚀</span>
-              Futuro Fundador
+              <span className="w-2 h-2 rounded-full bg-green-400" />
+              CEO & Fundador
             </div>
           </div>
         </div>

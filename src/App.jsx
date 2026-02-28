@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
 import Particles from './components/Particles';
+
+const About = lazy(() => import('./components/About'));
+const Skills = lazy(() => import('./components/Skills'));
+const Projects = lazy(() => import('./components/Projects'));
+const Contact = lazy(() => import('./components/Contact'));
+const Footer = lazy(() => import('./components/Footer'));
+const SnakeEasterEgg = lazy(() => import('./components/SnakeEasterEgg'));
 
 function App() {
   return (
@@ -14,11 +16,14 @@ function App() {
       <Particles />
       <Navbar />
       <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
-      <Footer />
+      <Suspense fallback={null}>
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
+        <Footer />
+        <SnakeEasterEgg />
+      </Suspense>
     </div>
   );
 }

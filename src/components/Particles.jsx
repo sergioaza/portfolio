@@ -1,7 +1,5 @@
 import { useEffect, useRef } from 'react';
 
-const COUNT = 70;
-const CONNECT_DIST = 120;
 const COLORS = ['#667eea', '#a855f7', '#06b6d4'];
 
 export default function Particles() {
@@ -11,7 +9,11 @@ export default function Particles() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     let raf;
+    const isMobile = window.innerWidth < 768;
+    const COUNT = isMobile ? 35 : 70;
+    const CONNECT_DIST = isMobile ? 90 : 120;
     const mouse = { x: -9999, y: -9999 };
+    const bursts = [];
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -34,11 +36,30 @@ export default function Particles() {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     };
+
+    const onClick = (e) => {
+      for (let i = 0; i < 10; i++) {
+        const angle = (i / 10) * Math.PI * 2;
+        const speed = Math.random() * 3 + 1.5;
+        bursts.push({
+          x: e.clientX,
+          y: e.clientY,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          r: Math.random() * 2.5 + 1,
+          color: COLORS[Math.floor(Math.random() * COLORS.length)],
+          life: 1,
+        });
+      }
+    };
+
     window.addEventListener('mousemove', onMove);
+    window.addEventListener('click', onClick);
 
     const tick = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // Regular particles
       for (const p of pts) {
         const dx = mouse.x - p.x;
         const dy = mouse.y - p.y;
@@ -66,20 +87,42 @@ export default function Particles() {
         ctx.fill();
       }
 
-      // Connecting lines between nearby particles
-      for (let i = 0; i < pts.length; i++) {
-        for (let j = i + 1; j < pts.length; j++) {
-          const dx = pts[i].x - pts[j].x;
-          const dy = pts[i].y - pts[j].y;
-          const d = Math.hypot(dx, dy);
-          if (d < CONNECT_DIST) {
-            ctx.beginPath();
-            ctx.moveTo(pts[i].x, pts[i].y);
-            ctx.lineTo(pts[j].x, pts[j].y);
-            ctx.strokeStyle = '#667eea';
-            ctx.globalAlpha = (1 - d / CONNECT_DIST) * 0.12;
-            ctx.lineWidth = 0.6;
-            ctx.stroke();
+      // Burst particles from clicks
+      for (let i = bursts.length - 1; i >= 0; i--) {
+        const b = bursts[i];
+        b.x += b.vx;
+        b.y += b.vy;
+        b.vx *= 0.91;
+        b.vy *= 0.91;
+        b.life -= 0.028;
+
+        if (b.life <= 0) { bursts.splice(i, 1); continue; }
+
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+        ctx.fillStyle = b.color;
+        ctx.globalAlpha = b.life * 0.9;
+        ctx.fill();
+      }
+
+      // Connecting lines — skipped on mobile (O(n²) expensive)
+      if (!isMobile) {
+        for (let i = 0; i < pts.length; i++) {
+          for (let j = i + 1; j < pts.length; j++) {
+            const dx = pts[i].x - pts[j].x;
+            // Early x-axis cull before expensive hypot
+            if (Math.abs(dx) > CONNECT_DIST) continue;
+            const dy = pts[i].y - pts[j].y;
+            const d = Math.hypot(dx, dy);
+            if (d < CONNECT_DIST) {
+              ctx.beginPath();
+              ctx.moveTo(pts[i].x, pts[i].y);
+              ctx.lineTo(pts[j].x, pts[j].y);
+              ctx.strokeStyle = '#667eea';
+              ctx.globalAlpha = (1 - d / CONNECT_DIST) * 0.12;
+              ctx.lineWidth = 0.6;
+              ctx.stroke();
+            }
           }
         }
       }
@@ -93,6 +136,7 @@ export default function Particles() {
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('click', onClick);
     };
   }, []);
 
