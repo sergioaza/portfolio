@@ -39,20 +39,26 @@ export default function SnakeEasterEgg() {
 
   useEffect(() => { activeRef.current = active; }, [active]);
 
-  // Konami code detection
+  // Konami code detection + click trigger
   useEffect(() => {
+    const activate = () => {
+      if (activeRef.current) return;
+      gameRef.current = initState();
+      setScore(0);
+      setDead(false);
+      setActive(true);
+    };
     const handler = (e) => {
       if (activeRef.current) return;
       konamiSeq.current = [...konamiSeq.current, e.code].slice(-KONAMI.length);
-      if (konamiSeq.current.join(',') === KONAMI.join(',')) {
-        gameRef.current = initState();
-        setScore(0);
-        setDead(false);
-        setActive(true);
-      }
+      if (konamiSeq.current.join(',') === KONAMI.join(',')) activate();
     };
     window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
+    window.addEventListener('konami-activate', activate);
+    return () => {
+      window.removeEventListener('keydown', handler);
+      window.removeEventListener('konami-activate', activate);
+    };
   }, []);
 
   const close = useCallback(() => {
