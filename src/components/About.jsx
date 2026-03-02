@@ -44,20 +44,28 @@ export default function About() {
               <h3 className="text-xl font-semibold text-[#e2e8f0]">¿Quién soy?</h3>
             </div>
             <p className="text-[#94a3b8] leading-relaxed mb-4">
-              No construyo apps. Construyo soluciones que importan — esas que alguien ve y piensa:{' '}
-              <span className="text-[#e2e8f0] font-medium">"¿cómo no existía esto antes?"</span>{' '}
-              Soy desarrollador Full Stack, emprendedor en acción y arquitecto de sistemas que van desde
-              la base de datos hasta la pantalla del usuario. Me muevo con la misma fluidez en backend
-              que en mobile, con IA integrada donde tiene sentido y sin ella donde no.{' '}
-              <span className="text-[#667eea] font-medium">Los retos difíciles no me asustan. Me despiertan.</span>
+              No construyo apps por construirlas. Me gusta crear soluciones que realmente tengan sentido,
+              de esas que alguien usa y piensa:{' '}
+              <span className="text-[#e2e8f0] font-medium">"¿cómo no existía esto antes?"</span>
+            </p>
+            <p className="text-[#94a3b8] leading-relaxed mb-4">
+              Soy desarrollador Full Stack y emprendedor en proceso constante. Disfruto entender un problema
+              desde la raíz, diseñar la arquitectura y llevarlo hasta producción, desde la base de datos
+              hasta la pantalla del usuario. Me siento cómodo tanto en backend como en mobile, integrando
+              IA cuando aporta valor real — y dejando de lado lo innecesario cuando no lo hace.
+            </p>
+            <p className="text-[#94a3b8] leading-relaxed mb-4">
+              <span className="text-[#667eea] font-medium">Los retos difíciles no me intimidan; al contrario, me motivan.</span>{' '}
+              Son los que más me enseñan y los que más me hacen crecer.
+            </p>
+            <p className="text-[#94a3b8] leading-relaxed mb-4">
+              Mi verdadera ventaja no es solo el stack que uso, sino el criterio con el que tomo decisiones.
+              Trabajo con herramientas modernas de desarrollo e IA que me permiten avanzar rápido, pero
+              siempre cuidando la arquitectura y la calidad del producto.
             </p>
             <p className="text-[#94a3b8] leading-relaxed">
-              Mi ventaja no es el stack — es el criterio. Domino{' '}
-              <span className="text-[#667eea] font-medium">Claude Code</span> y las herramientas de IA
-              modernas a un nivel que multiplica mi velocidad sin sacrificar arquitectura. Eso me permite
-              entregar proyectos completos — end-to-end, en producción — en el tiempo que otros tardarían
-              en planear.{' '}
-              <span className="text-[#e2e8f0] font-medium">No es magia. Es método. Y es lo que ya demostré.</span>
+              <span className="text-[#e2e8f0] font-medium">No es magia. Es método, enfoque y muchas horas resolviendo problemas reales.</span>{' '}
+              Y eso es justamente lo que me gusta hacer.
             </p>
           </div>
 
