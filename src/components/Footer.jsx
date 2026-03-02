@@ -14,7 +14,7 @@ export default function Footer() {
           fontFamily: 'monospace',
           fontSize: '11px',
           color: '#667eea',
-          opacity: 0.35,
+          opacity: 0.6,
           letterSpacing: '0.15em',
           userSelect: 'none',
           cursor: 'pointer',
@@ -22,7 +22,7 @@ export default function Footer() {
           display: 'inline-block',
         }}
         onMouseEnter={e => e.currentTarget.style.opacity = '0.9'}
-        onMouseLeave={e => e.currentTarget.style.opacity = '0.35'}
+        onMouseLeave={e => e.currentTarget.style.opacity = '0.6'}
       >
         // ↑ ↑ ↓ ↓ ← → ← →
       </p>
