@@ -100,9 +100,11 @@ presentación; **los nombres y las categorías no pueden divergir del CV**.
 **Deploy: automatico.** Un `git push` a `main` despliega el proyecto `portfolio` de Vercel,
 que es el que sirve https://portfolio-ashy-nine-45.vercel.app. No hace falta nada mas.
 
-> **No ejecutar `vercel --prod` desde esta carpeta.** El `.vercel/project.json` local apunta a
-> `portafolio` (con "a"), un proyecto **distinto y abandonado** cuya ultima produccion es de
-> hace meses. Desplegaria ahi y el sitio real no cambiaria, sin ningun error visible.
+> **Ojo con el nombre.** En Vercel hay dos proyectos: `portfolio` (el vivo) y `portafolio`
+> (con "a", abandonado). Hasta el 2026-08-19 el `.vercel/project.json` local apuntaba al
+> abandonado, asi que un `vercel --prod` desde aqui desplegaba al proyecto muerto sin dar
+> ningun error. Ya esta reenlazado al correcto: `vercel --prod --yes` funciona como respaldo
+> manual. Si algun dia el deploy "no se ve", comprobar primero `vercel ls`.
 
 ## Reglas de seguridad para Claude
 
