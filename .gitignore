@@ -24,3 +24,14 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# Archivos de trabajo locales (no forman parte del portafolio)
+github-profile-README.md
+CONTROL.yml
+remotion/
+eval_review_*.html
+.claude/settings.local.json
+ESTADO_ACTUAL.md
+CHECKLIST_SEGURIDAD.md
+.claude/
+.claudeignore

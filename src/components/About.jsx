@@ -156,21 +156,22 @@ export default function About() {
                   <div>
                     <p className="text-[#e2e8f0] font-medium">Ingeniería de Sistemas</p>
                     <p className="text-[#667eea] text-sm font-medium mt-1">Universidad Jorge Tadeo Lozano</p>
-                    <p className="text-[#94a3b8] text-sm mt-1">Bogotá, Colombia · 7mo Semestre</p>
+                    <p className="text-[#94a3b8] text-sm mt-1">Bogotá, Colombia · 8vo Semestre</p>
                     <div className="mt-4 w-full bg-white/5 rounded-full h-1.5">
-                      <div className="h-1.5 rounded-full bg-gradient-to-r from-[#667eea] to-[#a855f7]" style={{ width: '78%' }} />
+                      <div className="h-1.5 rounded-full bg-gradient-to-r from-[#667eea] to-[#a855f7]" style={{ width: '89%' }} />
                     </div>
-                    <p className="text-[#94a3b8] text-xs mt-1">Progreso: 7 / 9 semestres</p>
+                    <p className="text-[#94a3b8] text-xs mt-1">Progreso: 8 / 9 semestres</p>
                   </div>
                   <div>
                     <p className="text-[#667eea] text-xs font-semibold uppercase tracking-wider mb-3">Lo que construí aquí</p>
                     <div className="space-y-2.5">
                       {[
                         'Arquitectura de software',
-                        'Estructuras de datos y algoritmos',
+                        'Transformación digital',
+                        'Seguridad de la información',
+                        'Inteligencia artificial y minería de datos',
+                        'Sistemas distribuidos',
                         'Bases de datos relacionales',
-                        'Redes y sistemas operativos',
-                        'Proyectos reales en producción',
                       ].map(item => (
                         <div key={item} className="flex items-center gap-2">
                           <div className="w-1.5 h-1.5 rounded-full bg-[#a855f7] flex-shrink-0" />
@@ -215,13 +216,14 @@ export default function About() {
               <h3 className="text-xl font-semibold text-[#e2e8f0]">Visión Emprendedora</h3>
             </div>
             <p className="text-[#94a3b8] text-sm leading-relaxed mb-4">
-              Mi objetivo no es solo ser un buen desarrollador — es construir mi propia empresa de tecnología.
-              Quiero crear productos que resuelvan problemas reales para personas reales.
+              Mi objetivo no es solo ser un buen desarrollador — es construir productos que resuelvan
+              problemas reales para personas reales, y sostenerlos en el tiempo.
             </p>
             <p className="text-[#94a3b8] text-sm leading-relaxed">
-              <span className="text-[#a855f7] font-medium">AlertaInf</span> no es un experimento
-              académico. Es una empresa real, con tecnología propia y clientes reales.{' '}
-              <span className="text-[#e2e8f0] font-medium">La estoy construyendo ahora.</span>
+              <span className="text-[#a855f7] font-medium">Magnor</span> no es un experimento
+              académico: es una empresa real, con clientes reales y{' '}
+              <span className="text-[#e2e8f0] font-medium">producto en producción</span> — desde una app
+              publicada en las dos tiendas hasta el software interno con el que trabaja el equipo.
             </p>
           </div>
 
@@ -240,7 +242,7 @@ export default function About() {
                 { emoji: '⚡', label: 'Aprendizaje rápido' },
                 { emoji: '📊', label: 'Pensamiento analítico' },
               ].map(({ emoji, label }) => (
-                <div key={label} className="text-center p-4 rounded-xl bg-white/3 hover:bg-white/6 transition-colors">
+                <div key={label} className="text-center p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
                   <span className="text-2xl">{emoji}</span>
                   <p className="text-[#94a3b8] text-sm mt-2 leading-tight">{label}</p>
                 </div>

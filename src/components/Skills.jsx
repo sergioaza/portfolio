@@ -1,80 +1,91 @@
 import React from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
+// Mismas 6 categorías que el CV. Mantenerlas sincronizadas.
 const SKILL_CATEGORIES = [
   {
-    title: 'Mobile',
+    title: 'Lenguajes',
     color: '#667eea',
     skills: [
-      { name: 'Android Studio', level: 85 },
-      { name: 'Kotlin', level: 80 },
-      { name: 'Java (Android)', level: 75 },
-    ],
-  },
-  {
-    title: 'Frontend',
-    color: '#a855f7',
-    skills: [
-      { name: 'React / Vite', level: 75 },
-      { name: 'Tailwind CSS', level: 70 },
-      { name: 'JavaScript', level: 75 },
-      { name: 'TypeScript', level: 55 },
+      { name: 'Python', level: 88 },
+      { name: 'SQL', level: 82 },
+      { name: 'JavaScript', level: 80 },
+      { name: 'TypeScript', level: 78 },
+      { name: 'Kotlin', level: 78 },
+      { name: 'Java (básico)', level: 45 },
     ],
   },
   {
     title: 'Backend',
     color: '#06b6d4',
     skills: [
-      { name: 'FastAPI (Python)', level: 75 },
-      { name: 'Python', level: 78 },
-      { name: 'SQLAlchemy', level: 70 },
-      { name: 'REST APIs', level: 80 },
+      { name: 'APIs REST', level: 88 },
+      { name: 'FastAPI', level: 85 },
+      { name: 'SQLAlchemy / Alembic', level: 80 },
+      { name: 'Celery / Redis', level: 72 },
     ],
   },
   {
     title: 'Bases de datos',
     color: '#10b981',
     skills: [
-      { name: 'PostgreSQL', level: 72 },
+      { name: 'PostgreSQL', level: 85 },
       { name: 'Firebase / Firestore', level: 80 },
-      { name: 'MySQL', level: 65 },
+      { name: 'Supabase', level: 75 },
+      { name: 'pgvector', level: 70 },
+      { name: 'Oracle / MySQL', level: 62 },
     ],
   },
   {
-    title: 'DevOps & Cloud',
+    title: 'Frontend y móvil',
+    color: '#a855f7',
+    skills: [
+      { name: 'React', level: 82 },
+      { name: 'Next.js', level: 80 },
+      { name: 'Tailwind CSS', level: 80 },
+      { name: 'Jetpack Compose', level: 78 },
+      { name: 'React Native (Expo)', level: 72 },
+    ],
+  },
+  {
+    title: 'DevOps y calidad',
     color: '#f59e0b',
     skills: [
-      { name: 'Docker / Compose', level: 65 },
-      { name: 'Git / GitHub', level: 85 },
-      { name: 'Vercel + Render', level: 70 },
-      { name: 'Neon (PostgreSQL cloud)', level: 65 },
+      { name: 'Git / GitHub', level: 88 },
+      { name: 'Pytest / pruebas', level: 85 },
+      { name: 'Docker', level: 78 },
+      { name: 'Google Cloud', level: 75 },
+      { name: 'GitHub Actions (CI/CD)', level: 75 },
     ],
   },
   {
-    title: 'IA & APIs',
-    color: '#667eea',
+    title: 'Datos e IA',
+    color: '#06b6d4',
     skills: [
-      { name: 'Claude Code (avanzado)', level: 88 },
-      { name: 'Google Places API', level: 78 },
-      { name: 'Weather API', level: 75 },
-      { name: 'Google OAuth', level: 70 },
+      { name: 'Claude Code (avanzado)', level: 90 },
+      { name: 'SDK de Anthropic', level: 85 },
+      { name: 'RAG / pgvector', level: 72 },
+      { name: 'scikit-learn / pandas', level: 65 },
     ],
   },
 ];
 
 const TECH_ICONS = [
-  { name: 'Kotlin', bg: '#7F52FF', initial: 'K' },
-  { name: 'React', bg: '#61DAFB', initial: 'R', dark: true },
   { name: 'Python', bg: '#3776AB', initial: 'Py' },
   { name: 'FastAPI', bg: '#009688', initial: 'FA' },
-  { name: 'Firebase', bg: '#FF6D00', initial: 'Fi' },
   { name: 'PostgreSQL', bg: '#336791', initial: 'PG' },
+  { name: 'React', bg: '#61DAFB', initial: 'R', dark: true },
+  { name: 'Next.js', bg: '#e5e5e5', initial: 'N', dark: true },
+  { name: 'TypeScript', bg: '#3178C6', initial: 'TS' },
+  { name: 'Kotlin', bg: '#7F52FF', initial: 'K' },
+  { name: 'Expo', bg: '#4630EB', initial: 'Ex' },
   { name: 'Docker', bg: '#2496ED', initial: 'Do' },
+  { name: 'Google Cloud', bg: '#4285F4', initial: 'GC' },
+  { name: 'Redis', bg: '#DC382D', initial: 'Re' },
+  { name: 'Supabase', bg: '#3FCF8E', initial: 'Sb', dark: true },
   { name: 'Git', bg: '#F05032', initial: 'Gi' },
-  { name: 'Claude', bg: '#667eea', initial: 'AI' },
+  { name: 'Claude', bg: '#CC785C', initial: 'AI' },
   { name: 'Tailwind', bg: '#06B6D4', initial: 'Tw', dark: true },
-  { name: 'JS', bg: '#F7DF1E', initial: 'JS', dark: true },
-  { name: 'Android', bg: '#3DDC84', initial: 'An', dark: true },
 ];
 
 export default function Skills() {

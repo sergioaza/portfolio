@@ -1,48 +1,65 @@
 # Portafolio — Sergio Daniel Aza Ocampo
 
-## Perfil
-- Estudiante Ingeniería de Sistemas, 7mo semestre, Universidad Jorge Tadeo Lozano, Bogotá
-- GitHub: https://github.com/sergioaza | Email: sergioaza2525@gmail.com
-- Sin LinkedIn. CV pendiente.
+Sitio personal en React + Vite. Es la **cara pública** de Sergio: lo que dice aquí tiene que
+coincidir con su CV y con su perfil de GitHub.
 
-## Deploy
-- **Producción (Vercel):** https://portafolio-98z671q59-sergios-projects-3bc36702.vercel.app
-- Repo: https://github.com/sergioaza/portfolio
-- Branch principal: `main` — cada push a main se puede deployar con `vercel --prod --yes`
+> **Estado vivo:** `ESTADO_ACTUAL.md` · **Contrato para el hub:** `CONTROL.yml` ·
+> **Seguridad:** `CHECKLIST_SEGURIDAD.md`. Este archivo solo contiene lo **estable**.
+>
+> Esos tres documentos son **locales, no están en el repo**: son gestión interna y este
+> repositorio es público (ver `.gitignore`). Si clonas el proyecto, no vas a encontrarlos.
+
+## Regla de oro: una sola fuente de verdad
+
+Los hechos que se muestran (perfil, proyectos, habilidades, cifras) **no se inventan aquí**.
+Salen de `_CentroControl/cv/PERFIL_MAESTRO.md`, que es el mismo origen del CV y del README del
+perfil de GitHub. Si algo del sitio contradice ese archivo, se corrige el sitio.
+
+Dos reglas heredadas de ahí que **no se rompen**:
+
+- **De la plataforma SaaS no se menciona el sector ni el cliente.** Los nombres concretos
+  estan en el checklist de seguridad local, que no se versiona.
+- **MyWay no lleva "IA".** Es un motor de recomendación contextual por scoring; el código que
+  llamaba a un LLM está muerto. Decir "IA" expone a una pregunta que no se puede responder.
+
+Y un criterio editorial de Sergio: fuera resultados de auditorías, conteos de commits y
+herramientas de flujo de trabajo (CI, lint, reglas de merge). Dentro: qué se construyó, para
+quién y con qué arquitectura. La cifra que sí vale es el **número de pruebas automatizadas**.
 
 ## Stack
+
 - React 19 + Vite (rolldown) + Tailwind CSS v3
-- No usar librerías de animación externas — las animaciones van en `index.css` o inline
+- **No usar librerías de animación externas** — las animaciones van en `index.css` o inline
 - Siempre leer el archivo antes de modificarlo
+- Repo: https://github.com/sergioaza/portfolio · rama principal `main`
 
 ## Estructura
+
 ```
 src/
-  App.jsx                  ← compose lazy (About, Skills, Projects, Contact, Footer, SnakeEasterEgg)
+  App.jsx                  ← compone lazy (About, Skills, Projects, Contact, Footer, SnakeEasterEgg)
                              Navbar, Hero y Particles son eager. Patrón: React.lazy + Suspense fallback={null}
   App.css                  ← mínimo, solo #root
-  index.css                ← Tailwind directives + clases custom (glass-card, gradient-text, btn-primary, btn-outline)
+  index.css                ← directivas Tailwind + clases custom
   components/
     Navbar.jsx             ← nav fijo dark, hamburger mobile, logo SVG nodo IA
-    Hero.jsx               ← hero dark, avatar placeholder (buscar "Placeholder"), botones GitHub+Proyectos
-    About.jsx              ← tabs de educación (Universidad / Platzi), bio, enfoque IA, soft skills
-    Skills.jsx             ← tech icons + skill bars por categoría
-    Projects.jsx           ← 3 proyectos: MY WAY, FinZen, AlertaInf
-    Contact.jsx            ← email (copy al portapapeles) + GitHub
+    Hero.jsx               ← hero dark, avatar, botones GitHub + Proyectos
+    About.jsx              ← tabs de educación (Universidad / Platzi), bio, visión, soft skills
+    Skills.jsx             ← tech icons + barras por categoría
+    Projects.jsx           ← array PROJECTS (ver abajo)
+    Contact.jsx            ← email (copia al portapapeles) + GitHub
     Footer.jsx
     Particles.jsx          ← canvas fullscreen fijo, z-index 1, pointer-events none
-    SnakeEasterEgg.jsx     ← easter egg: Konami code (↑↑↓↓←→←→) activa juego Snake en modal
+    SnakeEasterEgg.jsx     ← Konami code (↑↑↓↓←→←→) abre un Snake en modal
   hooks/
     useScrollAnimation.js  ← IntersectionObserver para animate-on-scroll
 public/
-  videos/
-    myway-demo.mp4         ← video demo MY WAY (5MB)
-  assets/
-    alertainf/             ← logo-sin-fondo-1.png, ICONO-1.png
-    finzen/                ← finzen-logo-dark.svg (logo oficial)
+  videos/myway-demo.mp4    ← demo de MY WAY (5 MB)
+  assets/alertainf/        ← logo de Guardián SOS (la carpeta conserva el nombre antiguo)
 ```
 
 ## Design system
+
 | Token | Valor |
 |-------|-------|
 | Fondo | `#0f0f1a` |
@@ -54,43 +71,46 @@ public/
 | Muted | `#94a3b8` |
 | Cards | glassmorphism: `rgba(255,255,255,0.04)` + `backdrop-blur` |
 
-Clases custom disponibles: `glass-card`, `gradient-text`, `btn-primary`, `btn-outline`, `section-title`, `animate-on-scroll`
+Clases custom: `glass-card`, `gradient-text`, `btn-primary`, `btn-outline`, `section-title`,
+`animate-on-scroll`.
 
-## About.jsx — grid layout actual
-```
-Row 1: Bio (col-span-2) | Enfoque Actual (1 col)
-Row 2: Educación con tabs (col-span-3, ancho completo)
-Row 3: Visión Emprendedora (1 col) | Soft Skills (col-span-2)
-```
-- El card de Educación usa `eduTab` ('universidad' | 'platzi') con fade transition (opacity+translateY, 50ms delay)
-- Badge "EN CURSO" en tab Platzi: `animate-pulse` 2s al montar, luego se detiene
-- Tab activo: `linear-gradient(135deg, #667eea, #a855f7)` texto blanco
-- Tab inactivo: `bg-white/5` texto `#94a3b8` hover `bg-white/10`
+## Los dos arrays que hay que mantener sincronizados
 
-## Proyectos
-### MY WAY
-- Android · Kotlin + Firebase + Google Places API + Weather API + IA
-- GitHub: https://github.com/Tiaguitoo09/MyWay (repo de colaborador, no del usuario)
-- Screenshots: `src/assets/myway/Imagen1.jpg` … `Imagen35.jpg`
-- Video demo: `/videos/myway-demo.mp4` con poster `Imagen1.jpg`
+**`Projects.jsx` → `PROJECTS`.** Cada entrada lleva `id, title, subtitle, typeLabel,
+TypeIcon, typeColor, description, highlights[], tech[], github, live, private, Media`.
+Los proyectos sin logo propio usan el componente `MediaCard` (icono + badge).
 
-### FinZen
-- React + Vite + FastAPI + PostgreSQL · Desplegado: Vercel + Render + Neon
-- GitHub: https://github.com/sergioaza/FINZEN (público)
-- Live: https://finzen-six.vercel.app
-- Logo: `public/assets/finzen/finzen-logo-dark.svg`
-- Fuente logos: `C:/Users/sergi/OneDrive/Documentos/Programación/FinZen/logo-assets/`
-- Path local: `C:/Users/sergi/OneDrive/Documentos/Programación/FinZen`
+**`Skills.jsx` → `SKILL_CATEGORIES`.** Son **las mismas 6 categorías del CV**: Lenguajes,
+Backend, Bases de datos, Frontend y móvil, DevOps y calidad, Datos e IA. El `level` (%) es solo
+presentación; **los nombres y las categorías no pueden divergir del CV**.
 
-### AlertaInf
-- Next.js + TypeScript + FastAPI + Docker · PRIVADO (NDA)
-- Sin GitHub público, sin código ni modelo de negocio en el portafolio
-- Solo logos: `public/assets/alertainf/`
-- Path local: `C:/Users/sergi/OneDrive/Documentos/Programación/AlertaInf`
+`About.jsx` también carga datos que envejecen: semestre y barra de progreso, cursos de Platzi
+(`platziCourses`) y materias. Revisarlos cuando se toque el archivo.
 
-## Pendientes
-- [ ] Foto de perfil: reemplazar placeholder en `Hero.jsx` (buscar "Placeholder")
-- [ ] CV separado
-- [ ] Screenshots de FinZen para reemplazar el logo en la tarjeta
-- [ ] Mejorar perfil de GitHub del usuario
-- [ ] Confirmar URL de producción definitiva en Vercel (custom domain pendiente)
+## Comandos
+
+| Comando | Para qué |
+|---------|----------|
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Build de producción — **correrlo siempre tras tocar componentes** |
+| `npm run lint` | ESLint |
+| `/sync-memory` | Sincroniza la memoria con el estado real (Paso 0: `verificar_memoria.py`) |
+| `/memory-audit` | Audita el store de memoria contra la realidad |
+
+Deploy: `vercel --prod --yes` desde la raíz.
+
+## Reglas de seguridad para Claude
+
+### PROHIBIDO
+- Publicar en el sitio el sector o el cliente de la plataforma SaaS.
+- Subir al repo credenciales, `.env`, o documentos personales (cartas de presentación,
+  evaluaciones internas). **Es un repo público.**
+- `git push` o `vercel --prod` sin que Sergio lo pida.
+
+### REQUIERE CONFIRMACIÓN
+- Cambiar el copy de un proyecto o retirar uno del array `PROJECTS`.
+- Tocar el design system (afecta a todo el sitio).
+
+### LIBRE
+- Leer cualquier archivo, correr `npm run dev`, `build` y `lint`.
+- Ajustes de estilo que no cambien el contenido.

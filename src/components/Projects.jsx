@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Github, ExternalLink, Smartphone, Globe, Lock } from 'lucide-react';
+import { Github, ExternalLink, Smartphone, Globe, Lock, Bot, Layers, Boxes, Siren } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import posterImg from '../assets/myway/Imagen1.jpg';
 
@@ -9,7 +9,7 @@ function MyWayVideo() {
 
   if (error) {
     return (
-      <div className="relative bg-[#0a0a14] rounded-xl overflow-hidden flex-1 min-h-72 flex items-center justify-center">
+      <div className="relative bg-[#0a0a14] rounded-xl overflow-hidden h-72 sm:h-80 flex items-center justify-center">
         <div className="text-center px-4">
           <Smartphone size={40} className="text-[#667eea] mx-auto mb-3 opacity-60" />
           <p className="text-[#94a3b8] text-sm">App Android funcional</p>
@@ -20,10 +20,11 @@ function MyWayVideo() {
   }
 
   return (
-    <div className="relative bg-[#0a0a14] rounded-xl overflow-hidden flex-1 min-h-72">
+    <div className="relative bg-[#0a0a14] rounded-xl overflow-hidden h-72 sm:h-80">
       <video
         src="/videos/myway-demo.mp4"
         poster={posterImg}
+        preload="none"
         autoPlay
         muted
         loop
@@ -35,110 +36,150 @@ function MyWayVideo() {
   );
 }
 
-// AlertaInf logo display
-function AlertaInfMedia() {
+// Guardian SOS - logo + estado de publicacion
+function GuardianMedia() {
   return (
     <div className="relative bg-[#0a0a14] rounded-xl overflow-hidden h-72 sm:h-80 flex items-center justify-center">
       <div className="flex flex-col items-center gap-6">
-        <img
-          src="/assets/alertainf/logo-sin-fondo-1.png"
-          alt="AlertaInf Logo"
-          className="max-h-32 max-w-48 object-contain"
-          onError={(e) => {
-            e.target.style.display = 'none';
-          }}
-        />
-        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20">
-          <Lock size={14} className="text-amber-400" />
-          <span className="text-amber-400 text-xs font-medium">Proyecto privado — código bajo NDA</span>
+        <Siren size={44} style={{ color: '#667eea' }} className="opacity-80" />
+        <p className="text-[#e2e8f0] text-base font-semibold">Guardián SOS</p>
+        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+          <Smartphone size={14} className="text-emerald-400" />
+          <span className="text-emerald-400 text-xs font-medium">Publicada en Google Play y App Store</span>
         </div>
       </div>
     </div>
   );
 }
 
-// FinZen logo
-function FinZenMedia() {
+// Tarjeta generica para proyectos sin logo propio
+function MediaCard({ Icon, color, title, badge }) {
   return (
     <div className="relative bg-[#0a0a14] rounded-xl overflow-hidden h-72 sm:h-80 flex items-center justify-center">
-      <div className="flex flex-col items-center gap-5">
-        <img
-          src="/assets/finzen/finzen-logo-dark.svg"
-          alt="FinZen Logo"
-          className="max-h-24 max-w-xs object-contain"
-        />
-        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#667eea]/10 border border-[#667eea]/20">
-          <Globe size={13} className="text-[#667eea]" />
-          <span className="text-[#667eea] text-xs font-medium">App web en producción · Vercel + Render + Neon</span>
+      <div className="flex flex-col items-center gap-5 px-6 text-center">
+        <Icon size={44} style={{ color }} className="opacity-80" />
+        <p className="text-[#e2e8f0] text-base font-semibold">{title}</p>
+        <div
+          className="flex items-center gap-2 px-4 py-2 rounded-full border"
+          style={{ backgroundColor: color + '1a', borderColor: color + '33' }}
+        >
+          <span className="text-xs font-medium" style={{ color }}>{badge}</span>
         </div>
       </div>
     </div>
   );
+}
+
+function SaasMedia() {
+  return <MediaCard Icon={Bot} color="#a855f7" title="Plataforma SaaS con IA" badge="Proyecto privado · en desarrollo" />;
+}
+function FiloMedia() {
+  return <MediaCard Icon={Layers} color="#f59e0b" title="Filo" badge="Proyecto privado · en desarrollo" />;
+}
+function MagnorMedia() {
+  return <MediaCard Icon={Boxes} color="#22d3ee" title="magnor.tech" badge="En producción · Vercel" />;
 }
 
 const PROJECTS = [
   {
+    id: 'guardian-sos',
+    title: 'Guardián SOS',
+    subtitle: 'App de emergencias · Proyecto para cliente',
+    typeLabel: 'Móvil + Web',
+    TypeIcon: Smartphone,
+    typeColor: '#10b981',
+    description: 'Una app de emergencias sirve de poco si falla justo cuando se necesita. La construí de extremo a extremo — app móvil, panel administrativo y backend — y hoy está publicada en Google Play y en la App Store, con usuarios reales usándola.',
+    highlights: [
+      'Publicada en Google Play y App Store',
+      'Backend FastAPI sobre Google Cloud, con despliegue automatizado en contenedores',
+      'Panel administrativo en Next.js y aplicación móvil en Expo',
+      '629 pruebas automatizadas sobre autenticación, permisos por rol y aislamiento entre cuentas',
+    ],
+    tech: ['FastAPI', 'Next.js', 'Expo', 'PostgreSQL', 'Google Cloud', 'Docker', 'Alembic'],
+    github: null,
+    live: null,
+    private: true,
+    Media: GuardianMedia,
+  },
+  {
+    id: 'saas-ia',
+    title: 'Plataforma SaaS de atención con IA',
+    subtitle: 'Producto en desarrollo · Magnor',
+    typeLabel: 'Backend + Web',
+    TypeIcon: Globe,
+    typeColor: '#a855f7',
+    description: 'Automatizar la atención al cliente sin que el usuario sienta que habla con un robot. El backend es multi-inquilino y procesa las conversaciones de forma asíncrona; la IA responde apoyada en una base de conocimiento propia con búsqueda semántica, no en respuestas genéricas.',
+    highlights: [
+      'Arquitectura multi-inquilino con procesamiento asíncrono en Celery y Redis',
+      'Base de conocimiento con recuperación semántica sobre pgvector, conectada al SDK de Anthropic',
+      'Panel web de operación construido en Next.js',
+      '892 pruebas automatizadas en el backend y 178 en el panel',
+    ],
+    tech: ['Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Celery', 'Redis', 'pgvector', 'Google Cloud'],
+    github: null,
+    live: null,
+    private: true,
+    Media: SaasMedia,
+  },
+  {
+    id: 'filo',
+    title: 'Filo',
+    subtitle: 'Plataforma de gestión para salones',
+    typeLabel: 'Web + Móvil',
+    TypeIcon: Globe,
+    typeColor: '#f59e0b',
+    description: 'Gestión completa para salones: agenda, clientes y comunicaciones. El reto más interesante no fue el producto sino el marco legal — en Colombia, contactar clientes exige cumplir la Ley 1581 de habeas data y la Ley 2300, así que el consentimiento y los límites de contacto están implementados dentro del propio sistema.',
+    highlights: [
+      'Monorepo con aplicación web, app móvil y paquetes compartidos',
+      'Cumplimiento de Ley 1581 (habeas data) y Ley 2300 implementado en el producto',
+      'Kill-switch de comunicaciones para cortar los envíos de inmediato',
+      '134 pruebas automatizadas',
+    ],
+    tech: ['Next.js', 'Expo', 'Drizzle', 'PostgreSQL', 'Turborepo', 'Docker'],
+    github: null,
+    live: null,
+    private: true,
+    Media: FiloMedia,
+  },
+  {
+    id: 'magnor',
+    title: 'magnor.tech',
+    subtitle: 'Sitio corporativo y software interno',
+    typeLabel: 'Web Full Stack',
+    TypeIcon: Globe,
+    typeColor: '#22d3ee',
+    description: 'El sitio público de Magnor y, detrás del login, el software con el que trabaja el equipo todos los días: tablero Kanban, calendario y gestión documental. La portada usa 3D en tiempo real con React Three Fiber.',
+    highlights: [
+      'En producción: sitio público y aplicación interna del equipo',
+      'Portada en 3D en tiempo real con React Three Fiber',
+      'Tablero Kanban, calendario y gestión documental',
+      '171 pruebas automatizadas',
+    ],
+    tech: ['Next.js 16', 'React 19', 'Supabase', 'React Three Fiber', 'Vercel'],
+    github: null,
+    live: 'https://magnor.tech',
+    private: false,
+    Media: MagnorMedia,
+  },
+  {
     id: 'myway',
     title: 'MY WAY',
-    subtitle: 'Asistente Inteligente de Viajes',
-    type: 'mobile',
+    subtitle: 'Recomendador de lugares · Proyecto universitario',
     typeLabel: 'App Móvil',
     TypeIcon: Smartphone,
     typeColor: '#667eea',
-    description: 'El problema: salir sin destino claro. Las apps de mapas muestran opciones pero no recomiendan según el clima del momento, tus preferencias ni tu historial. Construí un motor de IA propio que cruza ubicación, clima en tiempo real y gustos del usuario para generar recomendaciones personalizadas — empezó como proyecto de clase y escalé hasta tener un producto funcional real.',
+    description: 'El problema: salir sin destino claro. Las apps de mapas muestran opciones pero no recomiendan según el momento, tus preferencias ni el clima. Diseñé un motor de recomendación que puntúa cada lugar cruzando hora del día, clima, preferencias y distancia, con caché propia para no quemar la cuota de las APIs de Google.',
     highlights: [
-      'Motor de recomendación propio: IA que cruza clima, distancia y preferencias en tiempo real',
-      'Integración con Google Places API y Weather API desde cero',
-      'Autenticación y base de datos en tiempo real con Firebase',
-      'Proyecto académico escalado a producto funcional completo',
+      'Motor de recomendación contextual propio: puntúa por hora, clima, preferencias y distancia',
+      'Integración con Google Places, Directions y una API de clima',
+      'Persistencia local con Room, sincronizada con Firebase',
+      'Caché propia para reducir el consumo de cuota de las APIs externas',
     ],
-    tech: ['Kotlin', 'Android Studio', 'Firebase', 'Google Places API', 'Weather API', 'IA'],
+    tech: ['Kotlin', 'Jetpack Compose', 'Room', 'Firebase', 'Google Maps API', 'Android Studio'],
     github: 'https://github.com/Tiaguitoo09/MyWay',
     live: null,
     private: false,
     Media: MyWayVideo,
-  },
-  {
-    id: 'finzen',
-    title: 'FinZen',
-    subtitle: 'App de Finanzas Personales',
-    type: 'web',
-    typeLabel: 'Web Full Stack',
-    TypeIcon: Globe,
-    typeColor: '#a855f7',
-    description: 'Las apps de finanzas en español para Colombia no se adaptaban al contexto local. La solución: construir la mía — para mí, mi familia y cercanos. Control total, pesos colombianos, desde cero. El reto: llevar a producción mi primera app full stack completa, incluyendo JWT con revocación, migraciones Alembic y un stack distribuido en tres plataformas distintas.',
-    highlights: [
-      'Construido para uso real: finanzas personales en español para Colombia',
-      'Primera app full stack propia en producción: Vercel + Render + Neon',
-      'JWT con revocación, rate limiting, audit logs y verificación de email',
-      'Soporte multi-moneda e i18n (ES/EN/PT) con selección de país al registrarse',
-    ],
-    tech: ['React', 'Vite', 'Tailwind', 'FastAPI', 'PostgreSQL', 'Neon', 'Vercel', 'Docker'],
-    github: 'https://github.com/sergioaza/FINZEN',
-    live: 'https://finzen-six.vercel.app',
-    private: false,
-    Media: FinZenMedia,
-  },
-  {
-    id: 'alertainf',
-    title: 'AlertaInf',
-    subtitle: 'Startup en Desarrollo Activo',
-    type: 'web',
-    typeLabel: 'Web Full Stack',
-    TypeIcon: Globe,
-    typeColor: '#06b6d4',
-    description: 'Plataforma web full stack desarrollada con Next.js y FastAPI. Proyecto en fase activa de desarrollo con arquitectura robusta, autenticación segura y despliegue con Docker. Detalles confidenciales por acuerdo legal.',
-    highlights: [
-      'Proyecto en etapa de validación de producto',
-      'Frontend en Next.js (TypeScript)',
-      'Backend en FastAPI con Docker',
-      'Migraciones con Alembic',
-    ],
-    tech: ['Next.js', 'TypeScript', 'FastAPI', 'Docker', 'Tailwind', 'Alembic'],
-    github: null,
-    live: null,
-    private: true,
-    Media: AlertaInfMedia,
   },
 ];
 

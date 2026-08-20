@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#0a0a12] border-t border-white/5 py-8 px-6 text-center">
       <p className="text-[#94a3b8] text-sm mb-4">
-        © 2025 Sergio Daniel Aza Ocampo — Bogotá, Colombia
+        © {new Date().getFullYear()} Sergio Daniel Aza Ocampo — Bogotá, Colombia
       </p>
       {/* Easter egg hint — clickable to activate */}
       <p

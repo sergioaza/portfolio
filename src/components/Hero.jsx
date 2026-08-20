@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { Github, Mail, MapPin, ChevronDown } from 'lucide-react';
 
 export default function Hero() {
-  const titleRef = useRef(null);
 
   useEffect(() => {
     // Staggered entrance animation
@@ -41,18 +40,18 @@ export default function Hero() {
 
       {/* Glow orbs */}
       <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full blur-3xl opacity-10" style={{ background: 'radial-gradient(circle, #667eea, transparent)' }} />
-      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-8" style={{ background: 'radial-gradient(circle, #a855f7, transparent)' }} />
+      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-[0.08]" style={{ background: 'radial-gradient(circle, #a855f7, transparent)' }} />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
         {/* Text content */}
         <div className="flex-1 text-center lg:text-left">
-          <h1 ref={titleRef} className="hero-anim text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-[#e2e8f0]">
+          <h1 className="hero-anim text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-[#e2e8f0]">
             Sergio Daniel<br />
             <span className="gradient-text">Aza Ocampo</span>
           </h1>
 
           <p className="hero-anim text-xl font-medium text-[#94a3b8] mb-2">
-            Desarrollador · Fundador · Especialista en IA
+            Desarrollador Full Stack · Cofundador de Magnor
           </p>
 
           <div className="hero-anim flex items-center justify-center lg:justify-start gap-2 text-[#94a3b8] text-sm mb-8">
@@ -61,9 +60,10 @@ export default function Hero() {
           </div>
 
           <p className="hero-anim text-[#94a3b8] leading-relaxed max-w-xl mb-10 text-base lg:mx-0 mx-auto">
-            Construyo aplicaciones móviles y sistemas full stack que resuelven problemas reales.
-            Apasionado por la integración de IA, el desarrollo eficiente y el uso avanzado de herramientas modernas como{' '}
-            <span className="text-[#667eea] font-medium">Claude Code</span>.
+            Construyo aplicaciones móviles y sistemas full stack que resuelven problemas reales — una de
+            ellas ya está{' '}
+            <span className="text-[#667eea] font-medium">publicada en Google Play y App Store</span>.
+            Trabajo backend en Python, web en React y móvil en Kotlin, integrando IA cuando aporta valor.
           </p>
 
           <div className="hero-anim flex flex-wrap items-center justify-center lg:justify-start gap-4">
@@ -113,7 +113,7 @@ export default function Hero() {
             </div>
             <div className="absolute -top-4 left-0 glass-card px-3 py-2 flex items-center gap-2 text-xs font-medium text-[#e2e8f0] animate-float" style={{ animationDelay: '0.75s' }}>
               <span className="w-2 h-2 rounded-full bg-green-400" />
-              CEO & Fundador
+              Cofundador de Magnor
             </div>
           </div>
         </div>
