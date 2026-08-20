@@ -97,7 +97,12 @@ presentación; **los nombres y las categorías no pueden divergir del CV**.
 | `/sync-memory` | Sincroniza la memoria con el estado real (Paso 0: `verificar_memoria.py`) |
 | `/memory-audit` | Audita el store de memoria contra la realidad |
 
-Deploy: `vercel --prod --yes` desde la raíz.
+**Deploy: automatico.** Un `git push` a `main` despliega el proyecto `portfolio` de Vercel,
+que es el que sirve https://portfolio-ashy-nine-45.vercel.app. No hace falta nada mas.
+
+> **No ejecutar `vercel --prod` desde esta carpeta.** El `.vercel/project.json` local apunta a
+> `portafolio` (con "a"), un proyecto **distinto y abandonado** cuya ultima produccion es de
+> hace meses. Desplegaria ahi y el sitio real no cambiaria, sin ningun error visible.
 
 ## Reglas de seguridad para Claude
 
